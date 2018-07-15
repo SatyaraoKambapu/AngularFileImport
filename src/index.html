@@ -1,0 +1,62 @@
+<html ng-app="plunker">
+<head>
+<link rel="stylesheet prefetch"
+	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet prefetch"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.css">
+<link rel="stylesheet prefetch"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<style class="cp-pen-styles">
+body {
+	padding: 5%;
+}
+
+.content {
+	background: #efefef;
+	padding: 20px;
+	margin-top: 25px;
+	line-height: 1.8;
+}
+</style>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.10/angular.min.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+
+	<div ng-init="rblogo = './rb.jpg'">
+		<img ng-src="{{rblogo}}">
+	</div>
+	<h1 ng-style="myStyle">{{title}}</h1>
+	<input type="file" file-reader="fileContent" />
+	<div ng-if="fileContent" class="content">
+		<table class="table table-striped report-list">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Sur Name</th>
+					<th ng-click="sortData()">Issue count <span> <i
+							ng-show="!sortOrder" class="fa fa-fw fa-sort-asc"></i> <i
+							ng-show="sortOrder" class="fa fa-fw fa-sort-desc"></i>
+
+					</span>
+					</th>
+					<th>Dob</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="data in fileContent | orderBy: 'IssueCount': sortOrder">
+					<td>{{data.FirstName}}</td>
+					<td>{{data.SurName}}</td>
+					<td>{{data.IssueCount}}</td>
+					<td>{{data.Dob}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+<script src="app.js"></script>
+
+</html>
